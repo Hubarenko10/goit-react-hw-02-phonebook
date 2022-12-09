@@ -1,19 +1,41 @@
+import { Component } from 'react';
 import { Form, Btn, Input, Label, Title } from './PhoneBookStyle';
 
-export const PhoneBook = ({ onSubmit }) => {
-  const handleSubmit = event =>{
+
+export class PhoneBook extends Component{
+  state = {
+    name: '',
+    number: '',
+  };
+  handleChange = e => {
+    const { name,value } = e.currentTarget;
+    this.setState({
+      [name]:value,
+    });
+    };
+
+ handleSubmit = event =>{
     event.preventDefault();
-    onSubmit(
-        event.target.elements.name.value,
-        event.target.elements.number.value
-        );
+    this.props.onSubmit(this.state);
+    this.reset()
 };
+ 
+  reset = () =>{
+  this.setState({
+    name:'',
+    number:'',
+  });
+  };
+render(){
+  const { name, number } = this.state;
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <Label>
           <Title>Name</Title>
           <Input
+            value={name}
+            onChange={this.handleChange}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -24,6 +46,8 @@ export const PhoneBook = ({ onSubmit }) => {
         <Label>
         <Title>Number</Title>
         <Input
+            value={number}
+            onChange={this.handleChange}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -31,8 +55,9 @@ export const PhoneBook = ({ onSubmit }) => {
             required
           />
           </Label>
-        <Btn>Add contacts</Btn>
+        <Btn type='submit'>Add contacts</Btn>
       </Form>
     </>
   );
-};
+}
+}
