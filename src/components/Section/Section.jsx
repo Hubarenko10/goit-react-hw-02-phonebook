@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { SectionStyle, Title } from "./SectionStyle"
 
 
@@ -9,5 +10,9 @@ return(
 {children}
 </SectionStyle>)
 
+}
+
+Section.propTypes = {
+title: PropTypes.string,
 }
 

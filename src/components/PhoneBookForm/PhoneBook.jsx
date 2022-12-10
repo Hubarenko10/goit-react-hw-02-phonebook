@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Form, Btn, Input, Label, Title } from './PhoneBookStyle';
 
@@ -42,8 +43,6 @@ render(){
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </Label>
-        <Label>
         <Title>Number</Title>
         <Input
             value={number}
@@ -55,9 +54,13 @@ render(){
             required
           />
           </Label>
-        <Btn type='submit'>Add contacts</Btn>
+          <Btn type='submit'>Add contacts</Btn>
       </Form>
     </>
   );
 }
+}
+
+Form.propTypes={
+  onSubmit: PropTypes.func.isRequired
 }
