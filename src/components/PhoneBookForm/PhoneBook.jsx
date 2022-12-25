@@ -4,6 +4,10 @@ import { Form, Btn, Input, Label, Title } from './PhoneBookStyle';
 
 
 export class PhoneBook extends Component{
+  static FormPropTypes = {
+    onSubmit: PropTypes.func.isRequired
+  }
+  
   state = {
     name: '',
     number: '',
@@ -61,6 +65,6 @@ render(){
 }
 }
 
-Form.propTypes={
-  onSubmit: PropTypes.func.isRequired
-}
+// Form.propTypes={
+//   onSubmit: PropTypes.func.isRequired
+// }
